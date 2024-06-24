@@ -1,2 +1,2 @@
 # starwars_blog
-Star Wars blog project fro m4Geeks academy
+Star Wars blog project from 4Geeks academy
