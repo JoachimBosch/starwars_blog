@@ -1,0 +1,6 @@
+.horizontal-scrollable > .row {
+    overflow-x: auto;
+    display: flex;
+    float: none;
+    
+}
