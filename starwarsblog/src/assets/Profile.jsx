@@ -1,13 +1,22 @@
+import { useParams } from "react-router-dom";
+
 function Profile(props) {
     return ( 
     <>
-    <div className="card mb-3 text-bg-dark">
-        <img src="..." className="card-img-top" alt="..." />
-        <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
+    <div className="container d-flex flex-row">
+        <div>
+            <img src="" alt="" />
         </div>
+        <div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
     </div>
     </> 
     );

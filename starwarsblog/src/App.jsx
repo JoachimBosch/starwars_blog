@@ -4,6 +4,7 @@ import './App.css';
 import MyContext from './Context/Context';
 import Cards from './assets/Cards';
 import Navigation from './assets/Navbar';
+import Profile from './assets/Profile';
 
 let peopleURL = "https://swapi.dev/api/people"
 let imgBase = "https://starwars-visualguide.com/assets/img/characters";
@@ -21,7 +22,7 @@ function App() {
     try {
       let response = await axios.get(peopleURL);
       let people = response.data.results.map((element, i) => {
-        let img = `${imgBase}/${i+1}`;
+        let img = `${imgBase}/${i+1}.jpg`;
         return {...element, img};
     });
     setData(people);
@@ -62,11 +63,6 @@ function App() {
       <MyContext.Provider value={context}>
         <div className="container">
             <Navigation />
-            {/* <ul>{data ? vehicles.map((el, i) =>{
-            return <li key={i}>{el.name}</li>;
-          })
-          : "no data"}
-          </ul> */}
           <div className="container horizontal-scrollable">
             <div className="row col-12">
               {data.map((e) => {
@@ -76,7 +72,6 @@ function App() {
               })}
             </div>
           </div>
-          {/* <Cards /> */}
         </div>
       </MyContext.Provider>
     </>
