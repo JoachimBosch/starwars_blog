@@ -3,40 +3,30 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import MyContext from '../Context/Context';
 
 function Navigation() {
+
+    
   return (
-        <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
+        <div className="container d-flex flex-row justify-content-between px-5 py-2">
             <div>
-                <Navbar.Brand href="#">Star Wars Blog</Navbar.Brand>
+                <h1>Star Wars Blog</h1>
             </div>
-            <div  className="d-flex flex-row">
+            <div  className="d-flex flex-row align-items-center">
                 <div className="me-2">
-                    <Form className="d-flex">
-                    <Form.Control
+                    <input
                     type="search"
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
                     />
-                    <Button variant="outline-success">Search</Button>
-                    </Form>
                 </div>
                 <div className="m-auto">
-                    <NavDropdown title="Favorites"id="collapsible-nav-dropdown">
-                    <NavDropdown.Item onClick="">Action</NavDropdown.Item>
-                    <NavDropdown.Item>
-                        Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>Something</NavDropdown.Item>
-                    </NavDropdown>
+                    <i className="fa-solid fa-heart" style={{ color: "#FFD43B"}}></i>
                 </div>
             </div>
             
-        </Container>
-        </Navbar>
+        </div>
   );
 };
 

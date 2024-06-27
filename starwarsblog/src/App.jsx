@@ -3,8 +3,8 @@ import axios from 'axios';
 import './App.css';
 import MyContext from './Context/Context';
 import Cards from './assets/Cards';
-import Navigation from './assets/Navbar';
 import Profile from './assets/Profile';
+import VehicleCards from './assets/VehicleCards';
 
 let peopleURL = "https://swapi.dev/api/people"
 let imgBase = "https://starwars-visualguide.com/assets/img/characters";
@@ -15,7 +15,6 @@ function App() {
   const [data, setData] = useState([]);
   const [planets, setPlanets] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const [favorite, setFavorite] = useState([])
 
   // Item 1 from readme
   async function fetchData() {
@@ -23,10 +22,11 @@ function App() {
       let response = await axios.get(peopleURL);
       let people = response.data.results.map((element, i) => {
         let img = `${imgBase}/${i+1}.jpg`;
-        return {...element, img};
+        let favorite = false;
+        return {...element, img, favorite};
     });
     setData(people);
-    console.log(data)
+    console.log(people)
     } catch (err) {
       console.error(err);
     }
@@ -35,7 +35,12 @@ function App() {
   async function fetchPlanets() {
     try {
       let response = await axios.get(planetsURL);
-      setPlanets(response.data.results)
+      let planets = response.data.results.map((element) => {
+        let favorite = false;
+        return {...element, favorite};
+    });
+      setPlanets(planets)
+      console.log(planets)
     } catch (err) {
       console.error(err)
     }
@@ -44,7 +49,12 @@ function App() {
   async function fetchVehicles() {
     try {
       let response = await axios.get(vehiclesURL);
-      setVehicles(response.data.results)
+      let vehicles = response.data.results.map((element) => {
+        let favorite = false;
+        return {...element, favorite};
+    });
+      setVehicles(vehicles);
+      console.log(vehicles);
     } catch (err) {
       console.error(err)
     }
@@ -56,18 +66,48 @@ function App() {
     fetchVehicles();
   }, [])
 
-  let context = { data, planets, vehicles }
+  let toggleFavorite = (id) => {
+    setData(prevData =>
+      prevData.map(element =>
+        element.name === id
+          ? { ...element, favorite: !element.favorite }
+          : element
+      )
+    );
+  };
+
+  let toggleVehicleFavorite = (id) => {
+    setVehicles(prevData =>
+      prevData.map(element =>
+        element.name === id
+          ? { ...element, favorite: !element.favorite }
+          : element
+      )
+    );
+  };
+
+  let context = { data, setData, planets, vehicles }
 
   return (
     <>
       <MyContext.Provider value={context}>
         <div className="container">
-            <Navigation />
           <div className="container horizontal-scrollable">
             <div className="row col-12">
-              {data.map((e) => {
+              {data.map((element) => {
                 return (
-                  <Cards name={e.name} point1={e.gender} point2={e.hair_color} point3={e.height} img={e.img} key={e.id}/>
+                  <Cards key={element.id}
+                  character={element}
+                  toggleFavorite={toggleFavorite}/>
+                );
+              })}
+            </div>
+            <div className="row col-12">
+              {vehicles.map((element) => {
+                return (
+                  <VehicleCards key={element.id}
+                  vehicle={element}
+                  toggleFavorite={toggleVehicleFavorite}/>
                 );
               })}
             </div>
