@@ -4,16 +4,11 @@ import Card from 'react-bootstrap/Card';
 
 
 function VehicleCards({ vehicle, toggleFavorite }) {
-    let vehicleURL = (vehicle) => {
-        const id = vehicle.url.split('/').slice(-2, -1)[0];
-        console.log(id);
-        return `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg`;
-      };
 
   return (
     <Card className="m-2 p-0" style={{ width: '18rem' }} key={vehicle.id}>
         <div className="p-1 d-flex align-items-center">
-            <Card.Img variant="top" src={vehicleURL} style={{ height: "17rem", width: "17rem"}}/>
+            <Card.Img variant="top" src={vehicle.img} style={{ height: "17rem", width: "17rem"}}/>
         </div>
       <Card.Body>
         <Card.Title>{vehicle.name}</Card.Title>

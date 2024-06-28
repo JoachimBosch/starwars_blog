@@ -6,10 +6,11 @@ import Cards from './assets/Cards';
 import Profile from './assets/Profile';
 import VehicleCards from './assets/VehicleCards';
 
-let peopleURL = "https://swapi.dev/api/people"
+let peopleURL = "https://swapi.dev/api/people";
 let imgBase = "https://starwars-visualguide.com/assets/img/characters";
-let planetsURL = "https://swapi.dev/api/planets/"
-let vehiclesURL = "https://swapi.dev/api/vehicles/"
+let planetsURL = "https://swapi.dev/api/planets/";
+let vehiclesURL = "https://swapi.dev/api/vehicles/";
+let vehicleImg = "https://starwars-visualguide.com/assets/img/vehicles";
 
 function App() {
   const [data, setData] = useState([]);
@@ -50,8 +51,10 @@ function App() {
     try {
       let response = await axios.get(vehiclesURL);
       let vehicles = response.data.results.map((element) => {
+        let id = element.url.split('/').slice(-2, -1)[0]
+        let img = `${vehicleImg}/${id}.jpg`;
         let favorite = false;
-        return {...element, favorite};
+        return {...element, img, favorite};
     });
       setVehicles(vehicles);
       console.log(vehicles);

@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/profile/:id" component={Profile} />
+        <Route path="profile/:name" element={<Profile />} />
       </Routes>
     </Router>
   </React.StrictMode>,

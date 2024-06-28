@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 
 function Cards({ character, toggleFavorite }) {
 
+
   return (
     <Card className="m-2 p-0" style={{ width: '18rem' }} key={character.id}>
         <div className="p-1 d-flex align-items-center">
@@ -20,8 +21,8 @@ function Cards({ character, toggleFavorite }) {
           </ul>
         </Card.Text>
         <div className="d-flex justify-content-between">
-            <Button as={Link} to={`/profile/${character.id}`} variant="primary">Go to profile</Button>
-            <Button onClick={() => toggleFavorite(character.name)}><i className="fa-regular fa-heart"></i></Button> {/* Doesn't work yet */}
+            <Button as={Link} to={`/profile/${character.name.replaceAll(" ","_")}`} variant="primary">Go to profile</Button>
+            <Button onClick={() => toggleFavorite(character.name)}><i className="fa-regular fa-heart"></i></Button>
         </div>
         
       </Card.Body>

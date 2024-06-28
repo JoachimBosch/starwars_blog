@@ -1,15 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 
-function Profile() {
+function Profile({character}) {
     const { id } = useParams();
     const { data } = useContext(MyContext);
-
-    const character = data.find((char) => char.id === Number(id));
-
-    if (!character) {
-        return <div>Character not found</div>;
-    }
 
     return ( 
     <>
