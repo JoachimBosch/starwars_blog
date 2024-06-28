@@ -10,8 +10,9 @@ import { MyProvider } from './Context/Context.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MyProvider>
+    <Router>
       <Navigation />
-      <Router>
+      
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="profile/:name" element={<Profile />} />

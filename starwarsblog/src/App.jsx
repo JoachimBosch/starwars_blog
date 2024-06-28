@@ -2,19 +2,20 @@ import React, { useContext } from 'react';
 import MyContext from './Context/Context';
 import Cards from './assets/Cards';
 import VehicleCards from './assets/VehicleCards';
+import "./App.css"; 
 
 function App() {
   const { data, toggleFavorite, vehicles, toggleVehicleFavorite } = useContext(MyContext);
 
   return (
-    <div className="container">
-      <div className="container horizontal-scrollable">
-        <div className="row col-12">
+    <div className="container-fluid bg-dark">
+      <div className="">
+        <div className="scrolling-wrapper">
           {data.map((character) => (
             <Cards key={character.id} character={character} toggleFavorite={toggleFavorite} />
           ))}
         </div>
-        <div className="row col-12">
+        <div className="scrolling-wrapper">
           {vehicles.map((vehicle) => (
             <VehicleCards key={vehicle.id} vehicle={vehicle} toggleVehicleFavorite={toggleVehicleFavorite} />
           ))}

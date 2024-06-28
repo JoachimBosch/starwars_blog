@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 function VehicleCards({ vehicle, toggleVehicleFavorite }) {
 
   return (
-    <Card className="m-2 p-0" style={{ width: '18rem' }} key={vehicle.id}>
+    <Card className="m-2 p-0 card text-bg-dark border border-warning" style={{ width: '18rem' }} key={vehicle.id}>
         <div className="p-1 d-flex align-items-center">
             <Card.Img variant="top" src={vehicle.img} style={{ height: "17rem", width: "17rem"}}/>
         </div>
@@ -24,8 +24,8 @@ function VehicleCards({ vehicle, toggleVehicleFavorite }) {
           </ul>
         </Card.Text>
         <div className="d-flex justify-content-between">
-        <Button as={Link} to={`/profile/${vehicle.name.replaceAll(" ", "_")}`} variant="primary">Go to profile</Button>
-            <Button onClick={() => toggleVehicleFavorite(vehicle.name)}><i className="fa-regular fa-heart"></i></Button> {/* Doesn't work yet */}
+        <Button as={Link} to={`/profile/${vehicle.name.replaceAll(" ", "_")}`} variant="warning">Go to profile</Button>
+            <Button onClick={() => toggleVehicleFavorite(vehicle.name)} className="btn btn-dark btn-outline-dark">{vehicle.favorite === false ? <i className="fa-regular fa-heart" style={{ color: "#FFCA2B"}}></i>  : <i class="fa-solid fa-heart" style={{ color: "#FFCA2B"}}></i>}</Button>
         </div>
         
       </Card.Body>

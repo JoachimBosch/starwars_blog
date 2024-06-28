@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import MyContext from '../Context/Context';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Button } from 'react-bootstrap';
 
 const FavoritesDropdown = () => {
   const { data, vehicles, toggleFavorite, toggleVehicleFavorite } = useContext(MyContext);
@@ -19,27 +19,36 @@ const FavoritesDropdown = () => {
   };
 
   return (
+    <>
+    <div className="d-flex justify-content-between">
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle variant="warning" id="dropdown-basic">
         Favorites
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         {favorites.length === 0 ? (
-          <Dropdown.Item>No favorites</Dropdown.Item>
+          <Dropdown.Item>Choose one, you must</Dropdown.Item>
         ) : (
           favorites.map(favorite => (
-            <Dropdown.Item key={favorite.name}>
+            <div className="d-flex flex-row justify-content-between">
+              <Dropdown.Item key={favorite.name}>
               {favorite.name}
-              <Button
+              <button
                 onClick={() => handleRemoveFavorite(favorite)}
                 style={{ marginLeft: '10px', cursor: 'pointer' }}
-              ><i class="fa-thin fa-trash-can"></i></Button>
+                className="btn btn-dark btn-outline-dark"
+              ><i class="fa-thin fa-trash-can"></i></button>
             </Dropdown.Item>
+            </div>
+            
           ))
         )}
       </Dropdown.Menu>
     </Dropdown>
+    </div>
+    </>
+    
   );
 };
 

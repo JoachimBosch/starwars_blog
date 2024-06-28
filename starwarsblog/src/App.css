@@ -1,10 +1,9 @@
-.horizontal-scrollable > .row {
-    overflow-x: auto;
-    display: flex;
-    float: none;
-    
-}
-
-.li {
-    font-size: large;
-}
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  
+    .card {
+      display: inline-block;
+    }
+  }

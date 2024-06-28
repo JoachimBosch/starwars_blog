@@ -14,6 +14,7 @@ export const MyProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   
+  
   async function fetchData() {
     try {
       let response = await axios.get(peopleURL);
