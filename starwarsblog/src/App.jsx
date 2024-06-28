@@ -1,124 +1,27 @@
-import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import './App.css';
+import React, { useContext } from 'react';
 import MyContext from './Context/Context';
 import Cards from './assets/Cards';
-import Profile from './assets/Profile';
 import VehicleCards from './assets/VehicleCards';
 
-let peopleURL = "https://swapi.dev/api/people";
-let imgBase = "https://starwars-visualguide.com/assets/img/characters";
-let planetsURL = "https://swapi.dev/api/planets/";
-let vehiclesURL = "https://swapi.dev/api/vehicles/";
-let vehicleImg = "https://starwars-visualguide.com/assets/img/vehicles";
-
 function App() {
-  const [data, setData] = useState([]);
-  const [planets, setPlanets] = useState([]);
-  const [vehicles, setVehicles] = useState([]);
-
-  // Item 1 from readme
-  async function fetchData() {
-    try {
-      let response = await axios.get(peopleURL);
-      let people = response.data.results.map((element, i) => {
-        let img = `${imgBase}/${i+1}.jpg`;
-        let favorite = false;
-        return {...element, img, favorite};
-    });
-    setData(people);
-    console.log(people)
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  async function fetchPlanets() {
-    try {
-      let response = await axios.get(planetsURL);
-      let planets = response.data.results.map((element) => {
-        let favorite = false;
-        return {...element, favorite};
-    });
-      setPlanets(planets)
-      console.log(planets)
-    } catch (err) {
-      console.error(err)
-    }
-  };
-
-  async function fetchVehicles() {
-    try {
-      let response = await axios.get(vehiclesURL);
-      let vehicles = response.data.results.map((element) => {
-        let id = element.url.split('/').slice(-2, -1)[0]
-        let img = `${vehicleImg}/${id}.jpg`;
-        let favorite = false;
-        return {...element, img, favorite};
-    });
-      setVehicles(vehicles);
-      console.log(vehicles);
-    } catch (err) {
-      console.error(err)
-    }
-  };
-  
-  useEffect(() => {
-    fetchData();
-    fetchPlanets();
-    fetchVehicles();
-  }, [])
-
-  let toggleFavorite = (id) => {
-    setData(prevData =>
-      prevData.map(element =>
-        element.name === id
-          ? { ...element, favorite: !element.favorite }
-          : element
-      )
-    );
-  };
-
-  let toggleVehicleFavorite = (id) => {
-    setVehicles(prevData =>
-      prevData.map(element =>
-        element.name === id
-          ? { ...element, favorite: !element.favorite }
-          : element
-      )
-    );
-  };
-
-  let context = { data, setData, planets, vehicles }
+  const { data, toggleFavorite, vehicles, toggleVehicleFavorite } = useContext(MyContext);
 
   return (
-    <>
-      <MyContext.Provider value={context}>
-        <div className="container">
-          <div className="container horizontal-scrollable">
-            <div className="row col-12">
-              {data.map((element) => {
-                return (
-                  <Cards key={element.id}
-                  character={element}
-                  toggleFavorite={toggleFavorite}/>
-                );
-              })}
-            </div>
-            <div className="row col-12">
-              {vehicles.map((element) => {
-                return (
-                  <VehicleCards key={element.id}
-                  vehicle={element}
-                  toggleFavorite={toggleVehicleFavorite}/>
-                );
-              })}
-            </div>
-          </div>
+    <div className="container">
+      <div className="container horizontal-scrollable">
+        <div className="row col-12">
+          {data.map((character) => (
+            <Cards key={character.id} character={character} toggleFavorite={toggleFavorite} />
+          ))}
         </div>
-      </MyContext.Provider>
-    </>
-  )
+        <div className="row col-12">
+          {vehicles.map((vehicle) => (
+            <VehicleCards key={vehicle.id} vehicle={vehicle} toggleVehicleFavorite={toggleVehicleFavorite} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

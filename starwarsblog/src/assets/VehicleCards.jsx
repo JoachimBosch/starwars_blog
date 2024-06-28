@@ -1,9 +1,9 @@
-
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-function VehicleCards({ vehicle, toggleFavorite }) {
+function VehicleCards({ vehicle, toggleVehicleFavorite }) {
 
   return (
     <Card className="m-2 p-0" style={{ width: '18rem' }} key={vehicle.id}>
@@ -24,8 +24,8 @@ function VehicleCards({ vehicle, toggleFavorite }) {
           </ul>
         </Card.Text>
         <div className="d-flex justify-content-between">
-            <Button onClick="">Go to profile</Button>
-            <Button onClick={() => toggleFavorite(vehicle.name)}><i className="fa-regular fa-heart"></i></Button> {/* Doesn't work yet */}
+        <Button as={Link} to={`/profile/${vehicle.name.replaceAll(" ", "_")}`} variant="primary">Go to profile</Button>
+            <Button onClick={() => toggleVehicleFavorite(vehicle.name)}><i className="fa-regular fa-heart"></i></Button> {/* Doesn't work yet */}
         </div>
         
       </Card.Body>
