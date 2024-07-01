@@ -15,11 +15,12 @@ function PlanetProfile() {
 
   return (
     <>
-      <div className="d-flex justify-content-center mt-3 mb-2">
+    <div className="bg-dark text-white">
+    <div className="d-flex justify-content-center pt-3 pb-2">
         <h1>{planet.name}</h1>
       </div>
       <div className="container d-flex flex-row">
-        <div className="me-3">
+        <div className="pe-3">
           <img src={planet.img} alt={planet.name} style={{ height: "500px", width: "500px"}} />
         </div>
         <div>
@@ -35,6 +36,7 @@ function PlanetProfile() {
           </ul>
         </div>
       </div>
+    </div>  
     </>
   );
 }

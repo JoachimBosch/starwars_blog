@@ -9,8 +9,10 @@ function App() {
   const { data, toggleFavorite, vehicles, toggleVehicleFavorite, planets, togglePlanetFavorite } = useContext(MyContext);
 
   return (
-    <div className="container-fluid bg-dark">
+    <div className="container-fluid bg-dark pb-5">
       <div className="">
+        {data.length === 0 ? "" : 
+        <>
         <div className="text-white py-3 d-flex justify-content-center">
           <h2>Characters:</h2>
         </div>
@@ -19,6 +21,10 @@ function App() {
             <Cards key={character.url} character={character} toggleFavorite={toggleFavorite} />
           ))}
         </div>
+        </>
+        }
+        {vehicles.length === 0 ? "" : 
+        <>
         <div className="text-white py-3 d-flex justify-content-center">
           <h2>Vehicles:</h2>
         </div>
@@ -27,6 +33,9 @@ function App() {
             <VehicleCards key={vehicle.url} vehicle={vehicle} toggleVehicleFavorite={toggleVehicleFavorite} />
           ))}
         </div>
+        </>}
+        {planets.length === 0 ? "" :
+        <>
         <div className="text-white py-3 d-flex justify-content-center">
           <h2>Planets:</h2>
         </div>
@@ -35,6 +44,7 @@ function App() {
             <PlanetCards key={planet.url} planet={planet} togglePlanetFavorite={togglePlanetFavorite} />
           ))}
         </div>
+        </>}
       </div>
     </div>
   );
