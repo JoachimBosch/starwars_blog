@@ -24,7 +24,7 @@ function VehicleCards({ vehicle, toggleVehicleFavorite }) {
           </ul>
         </Card.Text>
         <div className="d-flex justify-content-between">
-        <Button as={Link} to={`/profile/${vehicle.name.replaceAll(" ", "_")}`} variant="warning">Go to profile</Button>
+        <Button as={Link} to={`/profile/vehicle/${vehicle.name.replaceAll(" ", "_")}`} variant="warning">Go to profile</Button>
             <Button onClick={() => toggleVehicleFavorite(vehicle.name)} className="btn btn-dark btn-outline-dark">{vehicle.favorite === false ? <i className="fa-regular fa-heart" style={{ color: "#FFCA2B"}}></i>  : <i class="fa-solid fa-heart" style={{ color: "#FFCA2B"}}></i>}</Button>
         </div>
         

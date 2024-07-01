@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import MyContext from '../Context/Context';
 import { Dropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const FavoritesDropdown = () => {
-  const { data, vehicles, toggleFavorite, toggleVehicleFavorite } = useContext(MyContext);
+  const { data, vehicles, toggleFavorite, toggleVehicleFavorite, planets } = useContext(MyContext);
 
   const favorites = [
     ...data.filter(person => person.favorite),
-    ...vehicles.filter(vehicle => vehicle.favorite)
+    ...vehicles.filter(vehicle => vehicle.favorite),
+    ...planets.filter(planet => planet.favorite),
   ];
 
   const handleRemoveFavorite = (favorite) => {
@@ -23,7 +26,7 @@ const FavoritesDropdown = () => {
     <div className="d-flex justify-content-between">
     <Dropdown>
       <Dropdown.Toggle variant="warning" id="dropdown-basic">
-        Favorites
+        Favorites {favorites.length === 0 ? "" : `( ${favorites.length} )`} 
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
@@ -34,14 +37,11 @@ const FavoritesDropdown = () => {
             <div className="d-flex flex-row justify-content-between">
               <Dropdown.Item key={favorite.name}>
               {favorite.name}
-                <button
-                  onClick={() => handleRemoveFavorite(favorite)}
-                  
-                  className="btn btn-dark btn-outline-dark"
-                ><i class="fa-thin fa-trash-can"></i></button>
+                <span className="float-end" onClick={() => handleRemoveFavorite(favorite)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                </span>
             </Dropdown.Item>
             </div>
-            
           ))
         )}
       </Dropdown.Menu>

@@ -15,23 +15,26 @@ function Profile() {
 
   return (
     <>
-      <div className="d-flex justify-content-center mt-3 mb-2">
+    <div className="bg-dark text-white">
+    <div className="d-flex justify-content-center pt-3 pb-2">
         <h1>{character.name}</h1>
       </div>
       <div className="container d-flex flex-row">
-        <div>
+        <div className="pe-3">
           <img src={character.img} alt="" style={{ height: "500px", width: "500px"}} />
         </div>
-        <div>
-          <ul style={{ listStyleType: "none" }}>
-            <li>Born in: {character.birth_year}</li>
-            <li>Hair color: {character.hair_color}</li>
-            <li>Eye color: {character.eye_color}</li>
-            <li>Height: {character.height}</li>
-            <li>Mass: {character.mass}</li>
+        <div className="">
+          <ul style={{ listStyleType: "none", fontSize: "1.2rem", paddingLeft: 0 }}>
+            <li><strong>Born in:</strong> {character.birth_year}</li>
+            <li><strong>Hair color:</strong> {character.hair_color}</li>
+            <li><strong>Eye color:</strong> {character.eye_color}</li>
+            <li><strong>Height:</strong> {character.height}</li>
+            <li><strong>Mass:</strong> {character.mass}</li>
           </ul>
         </div>
       </div>
+    </div>
+      
     </>
   );
 }

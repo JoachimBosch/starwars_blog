@@ -8,6 +8,7 @@ let imgBase = "https://starwars-visualguide.com/assets/img/characters";
 let planetsURL = "https://swapi.dev/api/planets/";
 let vehiclesURL = "https://swapi.dev/api/vehicles/";
 let vehicleImg = "https://starwars-visualguide.com/assets/img/vehicles";
+let planetImg = "https://starwars-visualguide.com/assets/img/planets"
 
 export const MyProvider = ({ children }) => {
   const [data, setData] = useState([]);
@@ -35,8 +36,14 @@ export const MyProvider = ({ children }) => {
     try {
       let response = await axios.get(planetsURL);
       let planets = response.data.results.map((element) => {
+        let id = element.url.split('/').slice(-2, -1)[0];
+        let img = "";
+        if (id === '1') {
+          img = "https://starwars-visualguide.com/assets/img/big-placeholder.jpg"
+        }
+        else img = `${planetImg}/${id}.jpg`;
         let favorite = false;
-        return {...element, favorite};
+        return {...element, img, favorite};
       });
       setPlanets(planets);
       console.log(planets);
@@ -87,6 +94,16 @@ export const MyProvider = ({ children }) => {
     );
   };
 
+  let togglePlanetFavorite = (id) => {
+    setPlanets(prevData =>
+      prevData.map(element =>
+        element.name === id
+          ? { ...element, favorite: !element.favorite }
+          : element
+      )
+    );
+  };
+
   const filteredData = data.filter(item =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -99,7 +116,7 @@ export const MyProvider = ({ children }) => {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  let StarWarsContext = { data: filteredData, setData, planets: filteredPlanets, vehicles: filteredVehicles, toggleFavorite, toggleVehicleFavorite, fetchData, setSearchQuery };
+  let StarWarsContext = { data: filteredData, setData, planets: filteredPlanets, vehicles: filteredVehicles, toggleFavorite, toggleVehicleFavorite, togglePlanetFavorite, fetchData, setSearchQuery };
 
   return (
     <MyContext.Provider value={StarWarsContext}>
