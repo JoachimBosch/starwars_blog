@@ -13,6 +13,7 @@ export const MyProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [planets, setPlanets] = useState([]);
   const [vehicles, setVehicles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   
   
   async function fetchData() {
@@ -86,7 +87,19 @@ export const MyProvider = ({ children }) => {
     );
   };
 
-  let StarWarsContext = { data, setData, planets, vehicles, toggleFavorite, toggleVehicleFavorite };
+  const filteredData = data.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredPlanets = planets.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredVehicles = vehicles.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  let StarWarsContext = { data: filteredData, setData, planets: filteredPlanets, vehicles: filteredVehicles, toggleFavorite, toggleVehicleFavorite, fetchData, setSearchQuery };
 
   return (
     <MyContext.Provider value={StarWarsContext}>
@@ -95,4 +108,4 @@ export const MyProvider = ({ children }) => {
   );
 };
 
-export default MyContext;
+export default MyContext

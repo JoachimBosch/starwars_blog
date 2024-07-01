@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import MyContext from '../Context/Context';
-import { Dropdown, Button } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 const FavoritesDropdown = () => {
   const { data, vehicles, toggleFavorite, toggleVehicleFavorite } = useContext(MyContext);
@@ -34,11 +34,11 @@ const FavoritesDropdown = () => {
             <div className="d-flex flex-row justify-content-between">
               <Dropdown.Item key={favorite.name}>
               {favorite.name}
-              <button
-                onClick={() => handleRemoveFavorite(favorite)}
-                style={{ marginLeft: '10px', cursor: 'pointer' }}
-                className="btn btn-dark btn-outline-dark"
-              ><i class="fa-thin fa-trash-can"></i></button>
+                <button
+                  onClick={() => handleRemoveFavorite(favorite)}
+                  
+                  className="btn btn-dark btn-outline-dark"
+                ><i class="fa-thin fa-trash-can"></i></button>
             </Dropdown.Item>
             </div>
             

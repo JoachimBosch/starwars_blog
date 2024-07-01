@@ -7,6 +7,7 @@ import Profile from './assets/Profile.jsx';
 import Navigation from './assets/Navbar.jsx';
 import { MyProvider } from './Context/Context.jsx';
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MyProvider>

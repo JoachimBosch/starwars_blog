@@ -12,12 +12,12 @@ function App() {
       <div className="">
         <div className="scrolling-wrapper">
           {data.map((character) => (
-            <Cards key={character.id} character={character} toggleFavorite={toggleFavorite} />
+            <Cards key={character.url} character={character} toggleFavorite={toggleFavorite} />
           ))}
         </div>
-        <div className="scrolling-wrapper">
+        <div className="scrolling-wrapper">  
           {vehicles.map((vehicle) => (
-            <VehicleCards key={vehicle.id} vehicle={vehicle} toggleVehicleFavorite={toggleVehicleFavorite} />
+            <VehicleCards key={vehicle.url} vehicle={vehicle} toggleVehicleFavorite={toggleVehicleFavorite} />
           ))}
         </div>
       </div>
